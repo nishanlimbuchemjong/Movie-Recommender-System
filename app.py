@@ -24,7 +24,7 @@ def recommend(movie):
     # finding the distances that are similar to the given movie
     # Here, enumerate() is used to track the index of each moviews when sorting them
     # key = lambda x: x[1] -> is used to get the second elements when sorted
-    movie_list = sorted(list(enumerate(distance)), reverse=True, key = lambda x: x[1])[1:10]
+    movie_list = sorted(list(enumerate(distance)), reverse=True, key = lambda x: x[1])[1:31]
     
     recommendation_list = []
     recommended_poster = []
@@ -42,7 +42,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    all_movies_title = movies['title'].head(150).tolist()
+    all_movies_poster = [fetch_poster(id) for id in movies['movie_id'].head(150)]
+    all_movies = zip(all_movies_title, all_movies_poster)
+    return render_template('index.html', all_movies=all_movies)
+    # return render_template('index.html')
 
 @app.route('/recommend', methods=['POST'])
 def get_recommendations():
@@ -51,7 +55,7 @@ def get_recommendations():
         recommendations = recommend(movie_name)
         movie_names, posters = recommendations
         movies_with_posters = zip(movie_names, posters)
-        return render_template('index.html', recommendations=movies_with_posters)
+        return render_template('recommendation.html', recommendations=movies_with_posters)
     else:
         return "No movies found"
 

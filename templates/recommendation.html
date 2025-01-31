@@ -8,30 +8,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <style>
-        /* Change input focus outline to green */
-        .form-control:focus {
-            border-color: #28a745 !important; /* Green border */
-            box-shadow: 0 0 5px #28a745 !important; /* Green glow effect */
-        }
-    </style>    
-    <div class="container mt-4">
-        <form action="/recommend" method="POST">
-            <div class="row">
-                <div class="col-md-8">
-                    <input type="text" class="form-control form-color-success" id="movie_name" name="movie_name" placeholder="Enter movie name" required>
-                </div>
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-success w-100">Get Recommendations</button>
-                </div>
+    <!-- <div class="container">
+        <form action="/" method="POST">
+            <div class="mb-3">
+                <input type="text" class="form-control" id="movie_name" name="movie_name" required>
             </div>
+            <button type="submit" class="btn btn-primary w-100">Get Recommendations</button>
         </form>
-    </div>
-    <!-- All Movies -->
+    </div> -->
+    
+    <!-- Movies Recommendated -->
     <div class="container mt-4">
-        <h2>All Movies </h2>
+        <h2>You Might Like </h2>
         <div class="row">
-            {% for movie, poster in all_movies %}
+            {% for movie, poster in recommendations %}
                 <div class="col-md-4">
                     <div class="card">
                         <img src="{{ poster }}" class="card-img-top" alt="{{ movie }}">
@@ -42,8 +32,11 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="d-flex justify-content-center mt-4">
+            <a href="/" class="btn btn-success" style="width: 200px;">Back to Home</a>
+        </div>
     </div>
-    
+    <br>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
