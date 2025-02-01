@@ -3,7 +3,7 @@ venv/
 
 # Ignore model files (for example, model files like .npy or .pkl)
 model/
-
+model/*.pkl
 # Ignore bytecode files (compiled Python files)
 __pycache__/
 
