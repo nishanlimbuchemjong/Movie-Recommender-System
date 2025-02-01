@@ -1,8 +1,30 @@
 from flask import Flask, render_template, request
+import os
 import pickle
 import pandas as pd
 import requests
 
+# URLs of the .pkl files from GitHub Releases
+MOVIES_DICT_URL = "https://github.com/your-username/your-repo/releases/download/v1.0/movies_dict.pkl"
+SIMILARITY_URL = "https://github.com/your-username/your-repo/releases/download/v1.0/similarity.pkl"
+
+# Function to download missing files
+def download_file(url, filename):
+    if not os.path.exists(filename):  # Check if file exists
+        print(f"Downloading {filename}...")
+        response = requests.get(url)
+        with open(filename, "wb") as f:
+            f.write(response.content)
+        print(f"{filename} downloaded successfully.")
+
+# Ensure model directory exists
+os.makedirs("model", exist_ok=True)
+
+# Download model files if they don't exist
+download_file(MOVIES_DICT_URL, "model/movies_dict.pkl")
+download_file(SIMILARITY_URL, "model/similarity.pkl")
+
+# Load the model files
 movies_dict = pickle.load(open('model/movies_dict.pkl', 'rb'))
 similarity = pickle.load(open('model/similarity.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
