@@ -5,8 +5,8 @@ import pandas as pd
 import requests
 
 # URLs of the .pkl files from GitHub Releases
-MOVIES_DICT_URL = "https://github.com/your-username/your-repo/releases/download/v1.0/movies_dict.pkl"
-SIMILARITY_URL = "https://github.com/your-username/your-repo/releases/download/v1.0/similarity.pkl"
+MOVIES_DICT_URL = "https://github.com/nishanlimbuchemjong/Movie-Recommender-System/releases/download/v1.0/movies_dict.pkl"
+SIMILARITY_URL = "https://github.com/nishanlimbuchemjong/Movie-Recommender-System/releases/download/v1.0/similarity.pkl"
 
 # Function to download missing files
 def download_file(url, filename):
